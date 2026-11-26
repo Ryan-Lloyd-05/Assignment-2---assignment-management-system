@@ -1,4 +1,5 @@
 import streamlit as st
+#if your not running the code through streamlit community cloud
 #to run the code you have to enter the file loction into command prompt by dragging in and typing streamlit run before it
 #(example) C:\Users\Ryanw>streamlit run "C:\Users\Ryanw\Stuff\Uni stuff\Assignmnet 2 code.py"
 def create_account():
@@ -10,6 +11,7 @@ def create_account():
       file.write(f"{user},{password}\n")
     st.session_state["account"] = True
     st.write("account created")
+    st.session_state["menu"] = True
 
  
 def login_account():
@@ -24,6 +26,7 @@ def login_account():
         if user == user_check and password == password_check:
           st.write("login successful")
           st.session_state["log_in"] = True
+          st.session_state["menu"] = True
           return
     st.write("login failed")
   
@@ -76,15 +79,15 @@ def create_deadlines():
 
 
 # main code
-
+st.session_state["menu"] = False
 st.header ("Assignment management system")
-
-answer = st.radio("",["create account", "login"])
-
-if answer == "create account":
-  create_account()
-elif answer == "login":
-  login_account()
+if st.session_state.get("menu"):
+  answer = st.radio("",["create account", "login"])
+  
+  if answer == "create account":
+    create_account()
+  elif answer == "login":
+    login_account()
 
 
 
