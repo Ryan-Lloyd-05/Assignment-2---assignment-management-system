@@ -125,17 +125,16 @@ with open("accounts.txt") as file:
 
 conn = sqlite3.connect("info.db")
 
-if "file_name"
-  conn.execute("""
-  INSERT INTO info (user_1, file_name_1, file_data_1, task_1, deadline_1)
-  VALUES (?, ?, ?, ?, ?, ?)
-  """, (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+conn.execute("""
+INSERT INTO info (user_1, file_name_1, file_data_1, task_1, deadline_1)
+VALUES (?, ?, ?, ?, ?, ?)
+""", (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
   
-  conn.commit()
+conn.commit()
   
-  data = pd.read_sql_query("SELECT * FROM info", conn)
+data = pd.read_sql_query("SELECT * FROM info", conn)
   
-  st.dataframe(data)
+st.dataframe(data)
   
-  conn.close()
+conn.close()
 
