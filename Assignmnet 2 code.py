@@ -153,7 +153,7 @@ if "current_user" in st.session_state and st.button("Save"):
   )
   """)
 
-  raw_data = st.session_state[""file_data"]
+  raw_data = st.session_state["file_data"]
   encoded_file = base64.b64encode(raw_data).decode("utf-8")
   
   conn.execute("""
