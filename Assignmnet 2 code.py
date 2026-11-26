@@ -120,15 +120,21 @@ with open("accounts.txt") as file:
   for line in file:
     user, password = line.strip().split(",")
 
-  user, password = line.strip().split(",")
-
+if "file_name" not in st.session_state:
+  st.session_state["file_name"] = []
+if "file_data" not in st.session_state:
+  st.session_state["file_data"] = []
+if "checklists" not in st.session_state:
+  st.session_state["checklists"] = []
+if "deadlines" not in st.session_state:
+  st.session_state["deadlines"] = []
 
 conn = sqlite3.connect("info.db")
 
 conn.execute("""
-INSERT INTO info (user_1, file_name_1, file_data_1, task_1, deadline_1)
+INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
 VALUES (?, ?, ?, ?, ?, ?)
-""", (user, st.session_state("file_name"), st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+""", (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
   
 conn.commit()
   
