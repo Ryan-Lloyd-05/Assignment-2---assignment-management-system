@@ -17,6 +17,7 @@ def create_account():
     st.session_state["account"] = True
     st.toast("account created")
     st.session_state["menu"] = False
+    st.rerun()
 
  
 def login_account():
@@ -33,6 +34,7 @@ def login_account():
           st.session_state["current_user"] = user_check
           st.session_state["log_in"] = True
           st.session_state["menu"] = False
+          st.rerun()
           return
     st.toast("login failed")
   
@@ -120,7 +122,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     st.write("please upload a file first")
   elif choice_a == "create deadlines":
     create_deadlines()
-  st.rerun()
+
 
 with open("accounts.txt") as file:
   for line in file:
