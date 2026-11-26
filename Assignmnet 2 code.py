@@ -112,8 +112,8 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     create_deadlines()
 
 with open("accounts.txt") as file:
-      for line in file:
-        user, password = line.strip().split(",")
+  for line in file:
+    user, password = line.strip().split(",")
 
   user, password = line.strip().split(",")
 
