@@ -114,13 +114,17 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
 
 conn = sqlite3.connect("info.db")
 
-con.execute(""" INSERT INTO info (user, file_name, file_data, task, tasks, deadline) Values (?, ?, ?, ?, ?, ?) """,(user, file_name, file_data, task, tasks, deadline))
+
+con.execute("""
+INSERT INTO info (user, file_name, file_data, task, tasks, deadline)
+VALUES (?, ?, ?, ?, ?, ?)
+""",(user, file_name, file_data, task, tasks, deadline))
 
 con.commit()
 
 data = pd.read_sql_query("SELECT * FROM info", conn)
 
-st,dataframe(data)
+st.dataframe(data)
 
 conn.close()
 
