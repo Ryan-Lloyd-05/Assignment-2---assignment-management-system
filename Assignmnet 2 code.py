@@ -77,7 +77,7 @@ def create_deadlines():
 
 # main code
 
-st.header ("Assignment manigement system")
+st.header ("Assignment management system")
 
 answer = st.radio("",["create account", "login"])
 
