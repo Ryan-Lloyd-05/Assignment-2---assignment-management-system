@@ -14,7 +14,7 @@ def create_account():
       file.write(f"{user},{password}\n")
       st.session_state["current_user"] = user
     st.session_state["account"] = True
-    st.write("account created")
+    st.toast("account created")
     st.session_state["menu"] = False
 
  
@@ -28,12 +28,12 @@ def login_account():
         user, password = line.strip().split(",")
 
         if user == user_check and password == password_check:
-          st.write("login successful")
+          st.toast("login successful")
           st.session_state["current_user"] = user_check
           st.session_state["log_in"] = True
           st.session_state["menu"] = False
           return
-    st.write("login failed")
+    st.toast("login failed")
   
 def upload_file():
   uploaded_file = st.file_uploader("select the file you want to upload")
