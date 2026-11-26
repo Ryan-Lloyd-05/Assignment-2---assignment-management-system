@@ -1,6 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
+import json
 
 #if your not running the code through streamlit community cloud
 #to run the code you have to enter the file loction into command prompt by dragging in and typing streamlit run before it
@@ -140,7 +141,7 @@ if "current_user" in st.session_state and st.button("Save"):
   conn.execute("""
   INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
   VALUES (?, ?, ?, ?, ?)
-  """, (st.session_state["current_user"], st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+  """, (st.session_state["current_user"], json.dumps(st.session_state["file_name"]), json.dumps(st.session_state["file_data"]), json.dumps(st.session_state["checklists"]), json.dumps(st.session_state["deadlines"])))
     
   conn.commit()
     
