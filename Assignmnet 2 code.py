@@ -150,7 +150,7 @@ if "current_user" in st.session_state and st.button("Save"):
     
   conn.close()
 
-st.write("Save complete")
+st.toast("Save complete")
 
 
 
