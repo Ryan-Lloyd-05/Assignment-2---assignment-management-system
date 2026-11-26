@@ -122,7 +122,7 @@ conn = sqlite3.connect("info.db")
 
 
 conn.execute("""
-INSERT INTO info (user_1, file_1, task_1, tasks_1, deadline_1)
+INSERT INTO info (user_1, file_1, task_1, deadline_1)
 VALUES (?, ?, ?, ?, ?)
 """, (user, st.session_state["file"], st.session_state["checklists"], st.session_state["deadlines"]))
 
