@@ -65,9 +65,9 @@ def create_checklist():
   if st.button("create checklist"):
     st.session_state["checklists"].append(f"{task}")
 
-    for i in range(len(st.session_state["checklists"])):
+  for i in range(len(st.session_state["checklists"])):
     
-      st.checkbox(st.session_state["checklists"][i], key=f"checkbox_{i}")
+    st.checkbox(st.session_state["checklists"][i], key=f"checkbox_{i}")
 
 
 def create_deadlines():
