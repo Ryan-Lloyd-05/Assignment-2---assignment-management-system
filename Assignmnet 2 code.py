@@ -111,6 +111,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
   elif choice_a == "create deadlines":
     create_deadlines()
 
+open("accounts.txt") as file
 
 conn = sqlite3.connect("info.db")
 
