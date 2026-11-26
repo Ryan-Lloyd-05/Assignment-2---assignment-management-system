@@ -112,6 +112,8 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     create_deadlines()
 
 open("accounts.txt")
+user, password = line.strip().split(",")
+
 
 conn = sqlite3.connect("info.db")
 
