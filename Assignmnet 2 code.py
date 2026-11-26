@@ -1,7 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
-conn = sqlite.connect("info.db")
+conn = sqlite3.connect("info.db")
 #if your not running the code through streamlit community cloud
 #to run the code you have to enter the file loction into command prompt by dragging in and typing streamlit run before it
 #(example) C:\Users\Ryanw>streamlit run "C:\Users\Ryanw\Stuff\Uni stuff\Assignmnet 2 code.py"
