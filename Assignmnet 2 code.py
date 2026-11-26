@@ -35,6 +35,11 @@ def login_account():
   
 def upload_file():
   uploaded_file = st.file_uploader("select the file you want to upload")
+
+  if uploaded_file is None:
+    if "checklists" not in st.session_state:
+    st.session_state["file_name"] = []
+    st.session_state["file_data"] = []
   
   
   if uploaded_file is not None:
@@ -120,17 +125,17 @@ with open("accounts.txt") as file:
 
 conn = sqlite3.connect("info.db")
 
-
-conn.execute("""
-INSERT INTO info (user_1, file_name_1, file_data_1, task_1, deadline_1)
-VALUES (?, ?, ?, ?, ?, ?)
-""", (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
-
-conn.commit()
-
-data = pd.read_sql_query("SELECT * FROM info", conn)
-
-st.dataframe(data)
-
-conn.close()
+if "file_name"
+  conn.execute("""
+  INSERT INTO info (user_1, file_name_1, file_data_1, task_1, deadline_1)
+  VALUES (?, ?, ?, ?, ?, ?)
+  """, (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+  
+  conn.commit()
+  
+  data = pd.read_sql_query("SELECT * FROM info", conn)
+  
+  st.dataframe(data)
+  
+  conn.close()
 
