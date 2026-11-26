@@ -111,8 +111,11 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
   elif choice_a == "create deadlines":
     create_deadlines()
 
-open("accounts.txt")
-user, password = line.strip().split(",")
+with open("accounts.txt") as file:
+      for line in file:
+        user, password = line.strip().split(",")
+
+  user, password = line.strip().split(",")
 
 
 conn = sqlite3.connect("info.db")
