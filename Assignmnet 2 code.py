@@ -1,7 +1,7 @@
 import streamlit as st
 import sqlite3
 import pandas as pd
-conn = sqlite3.connect("info.db")
+
 #if your not running the code through streamlit community cloud
 #to run the code you have to enter the file loction into command prompt by dragging in and typing streamlit run before it
 #(example) C:\Users\Ryanw>streamlit run "C:\Users\Ryanw\Stuff\Uni stuff\Assignmnet 2 code.py"
@@ -110,6 +110,9 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     st.write("please upload a file first")
   elif choice_a == "create deadlines":
     create_deadlines()
+
+
+conn = sqlite3.connect("info.db")
 
 con.execute(""" INSERT INTO info (user, file_name, file_data, task, tasks, deadline) Values (?, ?, ?, ?, ?, ?) """,(user, file_name, file_data, task, tasks, deadline))
 
