@@ -12,6 +12,7 @@ def create_account():
   if st.button("Create account"):
     with open("accounts.txt", "a") as file:
       file.write(f"{user},{password}\n")
+      st.session_state["current_user"] = user
     st.session_state["account"] = True
     st.write("account created")
     st.session_state["menu"] = False
@@ -28,6 +29,7 @@ def login_account():
 
         if user == user_check and password == password_check:
           st.write("login successful")
+          st.session_state["current_user"] = user_check
           st.session_state["log_in"] = True
           st.session_state["menu"] = False
           return
@@ -129,18 +131,22 @@ if "checklists" not in st.session_state:
 if "deadlines" not in st.session_state:
   st.session_state["deadlines"] = []
 
-conn = sqlite3.connect("info.db")
+st.button("Save")
 
-conn.execute("""
-INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
-VALUES (?, ?, ?, ?, ?, ?)
-""", (user, st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+if "current_user" in st.session_state and st.button("Save"):
+
+  conn = sqlite3.connect("info.db")
   
-conn.commit()
-  
-data = pd.read_sql_query("SELECT * FROM info", conn)
-  
-st.dataframe(data)
-  
-conn.close()
+  conn.execute("""
+  INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
+  VALUES (?, ?, ?, ?, ?, ?)
+  """, (st.session_state["current_user"], st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
+    
+  conn.commit()
+    
+  data = pd.read_sql_query("SELECT * FROM info", conn)
+    
+  st.dataframe(data)
+    
+  conn.close()
 
