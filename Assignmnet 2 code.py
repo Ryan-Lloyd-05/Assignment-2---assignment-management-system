@@ -144,7 +144,7 @@ if "current_user" in st.session_state and st.button("Save"):
   conn = sqlite3.connect("info.db")
 
   conn.execute("""
-  CREATE TABLE IF NOT EXSIST info (
+  CREATE TABLE IF NOT EXIST info (
     user_1 TEXT,
     file_name_1 TEXT,
     file_data_1 TEXT,
