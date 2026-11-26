@@ -139,7 +139,7 @@ if "current_user" in st.session_state and st.button("Save"):
   
   conn.execute("""
   INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
-  VALUES (?, ?, ?, ?, ?, ?)
+  VALUES (?, ?, ?, ?, ?)
   """, (st.session_state["current_user"], st.session_state["file_name"], st.session_state["file_data"], st.session_state["checklists"], st.session_state["deadlines"]))
     
   conn.commit()
