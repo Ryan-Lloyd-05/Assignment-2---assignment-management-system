@@ -110,7 +110,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
   
 
   choice_a = st.selectbox("what would you like to do?",["upload file", "create checklist", "create deadlines"])
-  st.rerun()
+  
   
   if choice_a == "upload file":
     upload_file()
@@ -120,6 +120,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     st.write("please upload a file first")
   elif choice_a == "create deadlines":
     create_deadlines()
+  st.rerun()
 
 with open("accounts.txt") as file:
   for line in file:
