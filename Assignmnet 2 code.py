@@ -116,9 +116,9 @@ conn = sqlite3.connect("info.db")
 
 
 con.execute("""
-INSERT INTO info (user, file_name, file_data, task, tasks, deadline)
+INSERT INTO info (user_1, file_name_1, file_data_1, task_1, tasks_1, deadline_1)
 VALUES (?, ?, ?, ?, ?, ?)
-""",(user, file_name, file_data, task, tasks, deadline))
+""", (user, file_name, file_data, task, tasks, deadline))
 
 con.commit()
 
