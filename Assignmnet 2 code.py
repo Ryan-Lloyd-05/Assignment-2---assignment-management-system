@@ -37,7 +37,7 @@ def upload_file():
   uploaded_file = st.file_uploader("select the file you want to upload")
 
   if uploaded_file is None:
-    if "checklists" not in st.session_state:
+    
     st.session_state["file_name"] = []
     st.session_state["file_data"] = []
   
