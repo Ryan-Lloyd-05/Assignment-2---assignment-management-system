@@ -11,7 +11,7 @@ def create_account():
       file.write(f"{user},{password}\n")
     st.session_state["account"] = True
     st.write("account created")
-    st.session_state["menu"] = True
+    st.session_state["menu"] = False
 
  
 def login_account():
@@ -26,7 +26,7 @@ def login_account():
         if user == user_check and password == password_check:
           st.write("login successful")
           st.session_state["log_in"] = True
-          st.session_state["menu"] = True
+          st.session_state["menu"] = False
           return
     st.write("login failed")
   
@@ -79,13 +79,14 @@ def create_deadlines():
 
 
 # main code
-st.session_state["menu"] = False
+st.session_state["menu"] = True
 st.header ("Assignment management system")
-
-answer = st.radio("",["create account", "login"])
 
 if st.session_state.get("menu"):
   
+  answer = st.radio("",["create account", "login"])
+
+
   if answer == "create account":
     create_account()
   elif answer == "login":
