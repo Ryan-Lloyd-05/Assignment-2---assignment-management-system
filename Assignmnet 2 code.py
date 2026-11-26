@@ -106,10 +106,11 @@ if "menu" not in st.session_state:
 
 
 if st.session_state.get("log_in") or st.session_state.get("account"):
-  st.rerun()
+  
   
 
   choice_a = st.selectbox("what would you like to do?",["upload file", "create checklist", "create deadlines"])
+  st.rerun()
   
   if choice_a == "upload file":
     upload_file()
