@@ -79,10 +79,12 @@ def create_deadlines():
 
 
 # main code
-
+st.session_state["menu"] = False
 st.header ("Assignment management system")
+
+answer = st.radio("",["create account", "login"])
+
 if st.session_state.get("menu"):
-  answer = st.radio("",["create account", "login"])
   
   if answer == "create account":
     create_account()
