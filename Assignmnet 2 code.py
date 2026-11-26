@@ -131,7 +131,7 @@ if "checklists" not in st.session_state:
 if "deadlines" not in st.session_state:
   st.session_state["deadlines"] = []
 
-st.button("Save")
+
 
 if "current_user" in st.session_state and st.button("Save"):
 
