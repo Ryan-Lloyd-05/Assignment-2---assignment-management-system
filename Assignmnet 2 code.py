@@ -103,7 +103,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     upload_file()
   elif choice_a == "create checklist":
     create_checklist()
-  elif choice_a == "create deadlines" and "file" == False:
+  elif choice_a == "create deadlines" and "file" not in st.session_state:
     st.write("please upload a file first")
   elif choice_a == "create deadlines":
     create_deadlines()
