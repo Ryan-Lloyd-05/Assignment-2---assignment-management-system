@@ -1,4 +1,7 @@
 import streamlit as st
+import sqlite3
+import pandas as pd
+conn = sqlite.connect("info.db")
 #if your not running the code through streamlit community cloud
 #to run the code you have to enter the file loction into command prompt by dragging in and typing streamlit run before it
 #(example) C:\Users\Ryanw>streamlit run "C:\Users\Ryanw\Stuff\Uni stuff\Assignmnet 2 code.py"
@@ -67,10 +70,10 @@ def create_deadlines():
       st.session_state["deadlines"] = []
     
     file_list = (st.session_state["file_name"])
-    task = st.selectbox("select file", file_list, key="deadline_task")
+    tasks = st.selectbox("select file", file_list, key="deadline_task")
     deadline = st.text_input("enter a deadline:", key="deadline")
     if st.button("Add deadline"):
-      st.session_state["deadlines"].append(f"{task}: {deadline}")
+      st.session_state["deadlines"].append(f"{tasks}: {deadline}")
       
       st.write(st.session_state["deadlines"])
   
@@ -107,3 +110,14 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
     st.write("please upload a file first")
   elif choice_a == "create deadlines":
     create_deadlines()
+
+con.execute(""" INSERT INTO info (user, file_name, file_data, task, tasks, deadline) Values (?, ?) """,(user, file_name, file_data, task, tasks, deadline))
+
+con.commit()
+
+data = pd.read_sql_query("SELECT * FROM info", conn)
+
+st,dataframe(data)
+
+conn.close()
+
