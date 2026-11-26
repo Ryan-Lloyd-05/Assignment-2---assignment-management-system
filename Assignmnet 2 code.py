@@ -111,7 +111,7 @@ if st.session_state.get("log_in") or st.session_state.get("account"):
   elif choice_a == "create deadlines":
     create_deadlines()
 
-con.execute(""" INSERT INTO info (user, file_name, file_data, task, tasks, deadline) Values (?, ?) """,(user, file_name, file_data, task, tasks, deadline))
+con.execute(""" INSERT INTO info (user, file_name, file_data, task, tasks, deadline) Values (?, ?, ?, ?, ?, ?) """,(user, file_name, file_data, task, tasks, deadline))
 
 con.commit()
 
