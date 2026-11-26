@@ -142,11 +142,24 @@ if "deadlines" not in st.session_state:
 if "current_user" in st.session_state and st.button("Save"):
 
   conn = sqlite3.connect("info.db")
+
+  conn.execute("""
+  CREATE TABLE IF NOT EXSIST info (
+    user_1 TEXT,
+    file_name_1 TEXT,
+    file_data_1 TEXT,
+    checklist_1 TEXT,
+    deadline_1 TEXT,
+  )
+  """)
+
+  raw_data = st.session_state[""file_data"]
+  encoded_file = base64.b64encode(raw_data).decode("utf-8")
   
   conn.execute("""
   INSERT INTO info (user_1, file_name_1, file_data_1, checklist_1, deadline_1)
   VALUES (?, ?, ?, ?, ?)
-  """, (st.session_state["current_user"], json.dumps(st.session_state["file_name"]), json.dumps(st.session_state["file_data"]), json.dumps(st.session_state["checklists"]), json.dumps(st.session_state["deadlines"])))
+  """, (st.session_state["current_user"], json.dumps(st.session_state["file_name"]), encoded_data, json.dumps(st.session_state["checklists"]), json.dumps(st.session_state["deadlines"])))
     
   conn.commit()
     
